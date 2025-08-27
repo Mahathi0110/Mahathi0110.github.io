@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ravulakari Mahathi – Portfolio</title>
+  <meta name="description" content="Portfolio of Ravulakari Mahathi – Final-year CSE student at SR University. Projects, skills, experience, and contact details." />
+  <meta name="author" content="Ravulakari Mahathi" />
+  <link rel="canonical" href="https://Mahathi0110.github.io/" />
+  <meta property="og:title" content="Ravulakari Mahathi – Portfolio" />
+  <meta property="og:description" content="Final-year CSE student | Android & Web Development | Projects, skills, and contact" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-username.github.io/" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="icon" href="favicon.ico" />
+
+  <style>
+    /* ===== CSS RESET (trimmed) ===== */
+    *,*::before,*::after{box-sizing:border-box}html:focus-within{scroll-behavior:smooth}body{margin:0;min-height:100vh;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    img,picture,svg,video,canvas{display:block;max-width:100%}
+    input,button,textarea,select{font:inherit}
+
+    /* ===== Design Tokens ===== */
+    :root{
+      --bg:#0b1220;            /* dark bg */
+      --panel:#111828;         /* surface */
+      --text:#e5e7eb;          /* text */
+      --muted:#9ca3af;         /* secondary */
+      --brand:#0ea5e9;         /* cyan */
+      --brand-600:#0284c7;     /* darker */
+      --ring: 0 0 0 3px rgba(14,165,233,.3);
+      --radius:18px;
+      --mono:"SFMono-Regular","JetBrains Mono","Menlo",monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f7fafc; --panel:#ffffff; --text:#0f172a; --muted:#475569; --brand:#0369a1; --brand-600:#075985; }
+    }
+
+    body{background:linear-gradient(180deg,var(--bg),#0b1220 60%,#0d1322);color:var(--text);font-family:var(--sans);}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{color:var(--brand-600)}
+
+    /* ===== Layout ===== */
+    .container{max-width:1100px;margin-inline:auto;padding:24px}
+    header{position:sticky;top:0;background:rgba(11,18,32,.7);backdrop-filter:saturate(140%) blur(8px);z-index:50;border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:14px 24px}
+    .brand{display:flex;gap:14px;align-items:center}
+    .avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--brand)}
+    .nav a{font-weight:600;opacity:.9}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:var(--brand);color:white;border:1px solid rgba(255,255,255,.08);box-shadow:0 6px 18px rgba(14,165,233,.25)}
+    .btn:hover{background:var(--brand-600)}
+    .btn.outline{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.12)}
+
+    /* ===== Hero ===== */
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;padding:60px 24px}
+    .hero h1{font-size:clamp(28px,4.5vw,44px);line-height:1.1;margin:0}
+    .hero p{font-size:clamp(15px,1.4vw,18px);color:var(--muted)}
+    .chip{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;background:rgba(14,165,233,.12);color:var(--brand);font-weight:700;border:1px solid rgba(14,165,233,.25)}
+    .stack{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .stack .tag{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:14px}
+
+    .hero-card{background:radial-gradient(1200px 400px at 0% 0%, rgba(14,165,233,.15), transparent 50%), var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:22px}
+    .hero-portrait{width:180px;height:180px;border-radius:50%;object-fit:cover;border:4px solid rgba(255,255,255,.1);box-shadow:0 10px 40px rgba(0,0,0,.35);margin:auto}
+
+    /* ===== Sections ===== */
+    section{padding:36px 24px}
+    .section-title{font-size:24px;margin:0 0 18px 0;display:flex;align-items:center;gap:12px}
+    .section-title .dot{width:10px;height:10px;border-radius:50%;background:var(--brand)}
+    .grid{display:grid;gap:16px}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+
+    .card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:18px}
+    .card h3{margin:0 0 6px 0}
+    .sub{color:var(--muted);font-size:14px}
+
+    /* Timeline */
+    .timeline{position:relative}
+    .timeline::before{content:"";position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(var(--brand),transparent)}
+    .t-item{position:relative;padding-left:30px;margin:18px 0}
+    .t-item::before{content:"";position:absolute;left:6px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--brand)}
+
+    /* Project cards */
+    .project{display:flex;flex-direction:column;gap:12px}
+    .project .meta{display:flex;flex-wrap:wrap;gap:8px}
+    .badge{padding:6px 10px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:12px}
+
+    /* Footer */
+    footer{padding:40px 24px;color:var(--muted);text-align:center;border-top:1px solid rgba(255,255,255,.08)}
+
+    /* Util */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    /* Responsive */
+    @media (max-width: 880px){
+      .hero{grid-template-columns:1fr;gap:18px}
+      .grid.cols-2{grid-template-columns:1fr}
+      .grid.cols-3{grid-template-columns:1fr}
+      .nav-links{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav container" aria-label="Primary">
+      <div class="brand">
+        <img class="avatar" src="avatar.jpg" alt="Portrait placeholder of Ravulakari Mahathi" />
+        <div>
+          <strong>Ravulakari Mahathi</strong>
+          <div class="sub">Final‑year CSE @ SR University</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certifications</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button id="theme" class="btn outline" type="button" aria-label="Toggle theme">🌓</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="container hero" id="home">
+      <div>
+        <span class="chip" aria-hidden="true">Actively Seeking Opportunities</span>
+        <h1>Hi, I'm Mahathi — Android & Web Developer</h1>
+        <p>
+          Final-year Computer Science Engineering student with hands-on experience across Android and Web development. Strong in problem solving, debugging, and building scalable, user‑friendly software.
+        </p>
+        <div class="stack">
+          <span class="tag">Python</span>
+          <span class="tag">Java</span>
+          <span class="tag">C</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">SQL</span>
+        </div>
+        <p style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn" href="mailto:ravulakarimahathi@gmail.com">✉️ Email Me</a>
+          <a class="btn outline" href="#projects">See Projects ↓</a>
+          <a class="btn outline" href="Mahathi_Resume.pdf" download>⬇️ Resume</a>
+        </p>
+      </div>
+      <div class="hero-card">
+        <img class="hero-portrait" src="portrait.jpg" alt="Round portrait placeholder for Mahathi" />
+        <p class="sub" style="text-align:center;margin-top:10px"></code></p>
+        <div style="display:flex;gap:10px;justify-content:center;margin-top:10px">
+          <a class="badge" href="https://www.linkedin.com/in/r-mahathi-984031236/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn">LinkedIn ↗</a>
+          <a class="badge" href="https://github.com/Mahathi0110" target="_blank" rel="noreferrer noopener" aria-label="GitHub">GitHub ↗</a>
+          <a class="badge" href="https://www.hackerrank.com/profile/ravulkarmahathi" target="_blank" rel="noreferrer noopener" aria-label="HackerRank">HackerRank ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About / Summary -->
+    <section id="about" class="container">
+      <h2 class="section-title"><span class="dot"></span> About</h2>
+      <div class="card">
+        <p>
+          As a final-year CSE student, I specialize in Android and Web development. My skills include designing responsive UIs, building full-stack solutions, and applying problem-solving techniques to create reliable software. I am actively seeking opportunities to contribute to impactful projects and grow as a developer.
+        </p>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="container">
+      <h2 class="section-title"><span class="dot"></span> Education</h2>
+      <div class="card timeline">
+        <div class="t-item">
+          <h3>SR University — B.E. in Computer Science Engineering</h3>
+          <div class="sub">Sep 2022 – May 2026 · GPA: 8.52/10</div>
+        </div>
+        <div class="t-item">
+          <h3>SR Junior College For Girls — Intermediate Education</h3>
+          <div class="sub">Jun 2020 – May 2022 · 781/1000</div>
+        </div>
+        <div class="t-item">
+          <h3>SR High School — Secondary School Certificate</h3>
+          <div class="sub">Jun 2019 – May 2020 · GPA: 10/10</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="container">
+      <h2 class="section-title"><span class="dot"></span> Experience</h2>
+      <div class="grid cols-2">
+        <article class="card">
+          <h3>Android Developer Virtual Internship — Google (AICTE EduSkills)</h3>
+          <div class="sub">Apr 2024 – Jun 2024</div>
+          <ul>
+            <li>Hands-on training using Android Studio; built features in real‑world scenarios.</li>
+            <li>Improved problem solving and debugging for mobile apps.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Web Development Intern — Octanet Services</h3>
+          <div class="sub">Sep 2024 – Oct 2024</div>
+          <ul>
+            <li>Developed and deployed a responsive web app using HTML, CSS, and JavaScript.</li>
+            <li>Strengthened UI design, debugging, and cross‑browser compatibility.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="container">
+      <h2 class="section-title"><span class="dot"></span> Projects</h2>
+      <div class="grid cols-2">
+        <article class="card project">
+          <div>
+            <h3>Text to Speech Converter</h3>
+            <div class="sub">Mar 2025</div>
+          </div>
+          <p>
+            Web app that converts text into natural speech using the Web Speech API. Includes voice, pitch, and rate controls with a responsive, accessible UI.
+          </p>
+          <div class="meta">
+            <span class="badge">HTML</span>
+            <span class="badge">CSS</span>
+            <span class="badge">JavaScript</span>
+            <span class="badge">Speech Synthesis API</span>
+          </div>
+          <!-- Add project links when available -->
+          <!-- <p><a href="#" class="btn outline">Live Demo</a> <a href="#" class="btn outline">Source</a></p> -->
+        </article>
+        <article class="card project">
+          <div>
+            <h3>Automated Attendance Using Image Capture</h3>
+            <div class="sub">Dec 2024</div>
+          </div>
+          <p>
+            System to mark attendance via image capture and facial recognition, increasing accuracy and preventing proxy attendance for large groups.
+          </p>
+          <div class="meta">
+            <span class="badge">Python</span>
+            <span class="badge">OpenCV</span>
+            <span class="badge">Image Processing</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="container">
+      <h2 class="section-title"><span class="dot"></span> Technical Skills</h2>
+      <div class="card">
+        <div class="stack">
+          <span class="tag">Data Structures & Algorithms</span>
+          <span class="tag">Operating Systems</span>
+          <span class="tag">DBMS</span>
+          <span class="tag">Computer Networks</span>
+          <span class="tag">Python</span>
+          <span class="tag">C</span>
+          <span class="tag">Java</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">SQL / MySQL</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certs" class="container">
+      <h2 class="section-title"><span class="dot"></span> Certifications</h2>
+      <div class="grid cols-3">
+        <div class="card"><h3>Python Essentials 1</h3><div class="sub">Cisco</div></div>
+        <div class="card"><h3>Python Essentials 2</h3><div class="sub">Cisco</div></div>
+        <div class="card"><h3>Web Development</h3><div class="sub">LearnTube.ai</div></div>
+        <div class="card"><h3>Problem Solving</h3><div class="sub">HackerRank</div></div>
+        <div class="card"><h3>Introduction to Databases</h3><div class="sub">Coursera</div></div>
+        <div class="card"><h3>SQL</h3><div class="sub">HackerRank</div></div>
+        <div class="card"><h3>Introduction to Computer Networks</h3><div class="sub">Cisco</div></div>
+        <div class="card"><h3>Hackathon Participation</h3><div class="sub">SR University</div></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="container">
+      <h2 class="section-title"><span class="dot"></span> Contact</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <p><strong>Email:</strong> <a href="mailto:ravulakarimahathi@gmail.com">ravulakarimahathi@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+919392438950">+91 93924 38950</a></p>
+          <p class="sub">Based in Telangana, India</p>
+        </div>
+        <div class="card">
+          <p style="display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn outline" href="https://www.linkedin.com/in/r-mahathi-984031236/" target="_blank" rel="noreferrer noopener">LinkedIn</a>
+            <a class="btn outline" href="https://github.com/Mahathi0110" target="_blank" rel="noreferrer noopener">GitHub</a>
+            <a class="btn outline" href="https://www.hackerrank.com/profile/ravulkarmahathi" target="_blank" rel="noreferrer noopener">HackerRank</a>
+          </p>
+          <p class="sub">For fastest response, email me with details about the role/project and timeline.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Ravulakari Mahathi · Built with HTML & CSS · Hosted on GitHub Pages
+    </div>
+  </footer>
+
+  <!-- JSON‑LD for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ravulakari Mahathi",
+    "jobTitle": "Computer Science Engineering Student",
+    "affiliation": {"@type":"CollegeOrUniversity","name":"SR University"},
+    "email": "mailto:ravulakarimahathi@gmail.com",
+    "telephone": "+91 9392438950",
+    "address": {"@type":"PostalAddress","addressCountry":"IN","addressRegion":"Telangana"},
+    "url": "https://your-username.github.io/",
+    "sameAs": [
+      "https://www.linkedin.com/in/r-mahathi-984031236/",
+      "https://github.com/Mahathi0110",
+      "https://www.hackerrank.com/profile/ravulkarmahathi"
+    ]
+  }
+  </script>
+
+  <script>
+    // Year + theme toggle
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const themeBtn = document.getElementById('theme');
+    themeBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('light');
+      // Swap variables by toggling a class
+      if(isDark){
+        document.querySelector(':root').style.setProperty('--bg', '#f7fafc');
+        document.querySelector(':root').style.setProperty('--panel', '#ffffff');
+        document.querySelector(':root').style.setProperty('--text', '#0f172a');
+        document.querySelector(':root').style.setProperty('--muted', '#475569');
+        document.querySelector(':root').style.setProperty('--brand', '#0369a1');
+        document.querySelector(':root').style.setProperty('--brand-600', '#075985');
+      } else {
+        document.querySelector(':root').style.cssText = '';
+      }
+    });
+  </script>
+</body>
+</html>
